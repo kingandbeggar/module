@@ -4,14 +4,17 @@ import { ElMessageBox, ElMessage } from 'element-plus'
 import { DeleteFilled, Plus, Minus, RefreshLeft, RefreshRight } from '@element-plus/icons-vue'
 import 'vue-cropper/dist/index.css'
 import { VueCropper } from 'vue-cropper'
-interface imageCropperProps {
-  dialogVisible: boolean
-}
-interface imageCropperEmits {
-  (e: 'finish', value: any)
-  (e: 'update:dialogVisible', value: boolean)
-}
-const props = defineProps<imageCropperProps>()
+import type { imageCropperProps, imageCropperEmits } from './types'
+
+const props = withDefaults(defineProps<imageCropperProps>(), {
+  autoCropWidth: 200,
+  autoCropHeight: 200,
+  outputType: 'png' as const, 
+  autoCrop: true,
+  fixedBox: false,
+  centerBox: true,
+  canScale: true,
+})
 const emit = defineEmits<imageCropperEmits>()
 
 const cropper = ref()
@@ -23,12 +26,7 @@ watch(() => props.dialogVisible, (newvalue) => {
 })
 const options = reactive({
   img: null, // 裁剪图片的地址
-  autoCropWidth: 200, // 默认生成截图框宽度 默认容器的 80%
-  autoCropHeight: 200, // 默认生成截图框高度 默认容器的 80%
-  outputType: 'png', // 裁剪生成图片的格式 jpeg, png, webp
-  autoCrop: true, // 是否默认生成截图框
-  fixedBox: false, // 固定截图框大小
-  centerBox: true
+  ...props
 })
 const previews = ref({
   url: ''

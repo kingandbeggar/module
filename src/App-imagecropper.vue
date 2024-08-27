@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import imageCropper from './components/ImageCropper/ImageCropper.vue';
 import { ref } from 'vue'
-
 const dialogVisible = ref(false)
 const res = ref('')
 const finish = (data) => {
@@ -16,7 +15,7 @@ const finish = (data) => {
     <el-button plain @click="dialogVisible = true">
       打开裁剪工具
     </el-button>
-    <imageCropper v-model:dialogVisible="dialogVisible" @finish="finish"></imageCropper>
+    <imageCropper v-model:dialogVisible="dialogVisible" @finish="finish" :autoCropWidth="300"></imageCropper>
     <img :src="res" >
   </div>
 </template>
