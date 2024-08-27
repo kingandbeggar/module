@@ -1,0 +1,5 @@
+https://jeesite.com/front/vben-admin/docs/components/qrcode.html#usage
+https://blog.csdn.net/ganyingxie123456/article/details/135914353
+https://www.npmjs.com/package/qrcode#tocanvascanvaselement-text-options-cberror
+https://thorui.cn/doc/docs/thorui/tui-qrcode.html
+https://www.bilibili.com/video/BV1Tu4y1479G/?spm_id_from=333.788&vd_source=9b2e225ff5fdb7898019e8769d2bd7d3
