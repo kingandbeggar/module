@@ -1,1 +1,0 @@
-https://github.com/En777/vue-get-code/blob/master/src/vue-get-code.vue

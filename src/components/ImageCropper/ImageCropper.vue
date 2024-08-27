@@ -19,8 +19,6 @@ const emit = defineEmits<imageCropperEmits>()
 
 const cropper = ref()
 const dialogVisible = ref(props.dialogVisible)
-// const showCropper = ref(false)
-
 watch(() => props.dialogVisible, (newvalue) => {
   dialogVisible.value = newvalue
 })
@@ -87,11 +85,13 @@ const openDialog = () => {
   // showCropper.value = true
 }
 const handleClose = (done: () => void) => {
-  ElMessageBox.confirm('Are you sure to close this dialog?')
+  ElMessageBox.confirm('确认关闭?')
     .then(() => {
+      emit('update:dialogVisible', false)
       done()
     })
     .catch(() => {
+      emit('update:dialogVisible', false)
       // catch error
     })
 }
@@ -143,24 +143,24 @@ const handleClose = (done: () => void) => {
             </el-upload>
           </el-col>
           <el-col :span="4" style="text-align: right">
-            <el-button :icon="DeleteFilled" @click="reset"></el-button>
+            <el-button :icon="DeleteFilled" @click="reset" :disabled="!options.img"></el-button>
           </el-col>
           <el-col :span="4" style="text-align: right">
-            <el-button :icon="Plus" @click="changeScale(1)"></el-button>
+            <el-button :icon="Plus" @click="changeScale(1)" :disabled="!options.img"></el-button>
           </el-col>
           <el-col :span="4" style="text-align: right">
-            <el-button :icon="Minus" @click="changeScale(-1)"></el-button>
+            <el-button :icon="Minus" @click="changeScale(-1)" :disabled="!options.img"></el-button>
           </el-col>
           <el-col :span="4" style="text-align: right">
-            <el-button :icon="RefreshLeft" @click="rotateLeft()"></el-button>
+            <el-button :icon="RefreshLeft" @click="rotateLeft()" :disabled="!options.img"></el-button>
           </el-col>
           <el-col :span="4" style="text-align: right">
-            <el-button :icon="RefreshRight" @click="rotateRight()"></el-button>
+            <el-button :icon="RefreshRight" @click="rotateRight()" :disabled="!options.img"></el-button>
           </el-col>
         </el-row>
       </el-col>
       <el-col :span="12" style="text-align: center">
-        <el-button type="primary" @click="finish">确认</el-button>
+        <el-button type="primary" @click="finish" :disabled="!options.img">确认</el-button>
       </el-col>
     </el-row>
   </el-dialog>

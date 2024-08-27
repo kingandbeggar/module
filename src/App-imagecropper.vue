@@ -7,12 +7,15 @@ const finish = (data) => {
   res.value = data
   console.log(data, 'result')
 }
-
+const btnClick = () => {
+  dialogVisible.value = true
+  console.log(dialogVisible.value)
+}
 </script>
 
 <template>
   <div class="app">
-    <el-button plain @click="dialogVisible = true">
+    <el-button plain @click="btnClick">
       打开裁剪工具
     </el-button>
     <imageCropper v-model:dialogVisible="dialogVisible" @finish="finish" :autoCropWidth="300"></imageCropper>
